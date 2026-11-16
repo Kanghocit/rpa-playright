@@ -1,0 +1,19 @@
+{
+  "name": "playwright-rpa",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Local visual RPA studio: nested action blocks, Playwright runner, recorder, and editable JS.",
+  "workspaces": [
+    "shared",
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm run build -w @rpa/shared && concurrently -n shared,server,web -c cyan,blue,green \"npm run dev -w @rpa/shared\" \"npm run dev -w @rpa/server\" \"npm run dev -w @rpa/web\"",
+    "build": "npm run build -w @rpa/shared && npm run build -w @rpa/server && npm run build -w @rpa/web",
+    "smoke": "npm run build -w @rpa/shared && npm run smoke -w @rpa/server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>RPA demo</title>
+  </head>
+  <body>
+    <h1 id="title">Demo page</h1>
+    <label>
+      Name
+      <input id="name" name="name" />
+    </label>
+    <button id="next" type="button">Next</button>
+    <div id="count">0</div>
+    <select id="color" name="color">
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+    </select>
+    <script>
+      let n = 0
+      document.getElementById('next').addEventListener('click', () => {
+        n += 1
+        document.getElementById('count').textContent = String(n)
+        if (n >= 2) document.getElementById('next').remove()
+      })
+    </script>
+  </body>
+</html>

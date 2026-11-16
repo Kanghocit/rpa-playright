@@ -1,0 +1,88 @@
+{
+  "id": "demo-loop",
+  "name": "Demo loop and condition",
+  "updatedAt": "2026-11-16T05:15:32.535Z",
+  "run": {
+    "fromLoop": 1,
+    "toLoop": 1,
+    "commandIntervalMs": 0,
+    "randomJitterMs": 0,
+    "onErrorInLoop": "stop",
+    "headed": true,
+    "persistentProfile": false,
+    "proxyMode": "off",
+    "proxy": null,
+    "proxies": [],
+    "csvFile": "users.csv",
+    "startUrl": "http://127.0.0.1:3789/fixture/demo.html"
+  },
+  "blocks": [
+    {
+      "id": "open-demo",
+      "type": "openUrl",
+      "params": {
+        "url": "http://127.0.0.1:3789/fixture/demo.html"
+      }
+    },
+    {
+      "id": "loop-3",
+      "type": "loopTimes",
+      "label": "Click while Next is visible",
+      "params": {
+        "times": 3,
+        "varName": "i"
+      },
+      "children": [
+        {
+          "id": "if-next",
+          "type": "ifCondition",
+          "params": {
+            "condition": {
+              "op": "elementVisible",
+              "selector": "#next",
+              "timeoutMs": 800
+            }
+          },
+          "thenChildren": [
+            {
+              "id": "bb337bb8-e4be-4a7c-b807-3c813bc062be",
+              "type": "openUrl",
+              "params": {
+                "url": "https://example.com"
+              }
+            },
+            {
+              "id": "3054d96b-3083-4943-aefc-db54513f5f4f",
+              "type": "openUrl",
+              "params": {
+                "url": "https://example.com"
+              }
+            },
+            {
+              "id": "click-next",
+              "type": "click",
+              "params": {
+                "selector": "#next"
+              }
+            },
+            {
+              "id": "read-count",
+              "type": "extractText",
+              "params": {
+                "selector": "#count",
+                "varName": "count"
+              }
+            }
+          ],
+          "elseChildren": [
+            {
+              "id": "break-when-gone",
+              "type": "breakLoop",
+              "params": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
